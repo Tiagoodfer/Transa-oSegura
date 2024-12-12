@@ -64,7 +64,7 @@ class CartaoControllerTest {
     @Test
     @WithMockUser(username = "dk", password = "1234", roles = "USER")
     void testCadastrarCartao_CartaoExistente() {
-        CriarCartaoDTO criarCartaoDTO = new CriarCartaoDTO("123456789", "senha123");
+        CriarCartaoDTO criarCartaoDTO = new CriarCartaoDTO(new BigDecimal("500"), "123456789", "senha123");
 
         doThrow(new CartaoExistenteException("123456789", "senha123"))
                 .when(cartaoService).criarCartao(any(CriarCartaoDTO.class));

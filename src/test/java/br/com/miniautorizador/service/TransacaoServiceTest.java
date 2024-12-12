@@ -51,7 +51,6 @@ class TransacaoServiceTest {
 
     @Test
     void testCriaTransacao_ComSucesso() {
-        // Arrange
         String numeroCartao = "123456789";
         String senhaCartao = "senha123";
         BigDecimal valorTransacao = BigDecimal.valueOf(100);
@@ -62,10 +61,8 @@ class TransacaoServiceTest {
         when(cartaoRepository.findByNumeroCartao(numeroCartao))
                 .thenReturn(cartao);
 
-        // Act
         transacaoService.criaTransacao(transacao);
 
-        // Assert
         verify(cartaoRepository, times(2)).findByNumeroCartao(numeroCartao);
         verify(transacaoRepository, times(1)).save(transacao);
         verify(cartaoRepository, times(1)).save(cartao);
