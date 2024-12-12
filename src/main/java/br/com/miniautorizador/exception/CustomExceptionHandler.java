@@ -38,7 +38,6 @@ public class CustomExceptionHandler {
     @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
     @ExceptionHandler(CartaoExistenteException.class)
     public ResponseCartaoError handle(CartaoExistenteException ex) {
-        // Retorna os dados do cartão existente (número e senha) no corpo da resposta
         return new ResponseCartaoError(ex.getSenha(), ex.getNumeroCartao());
     }
 

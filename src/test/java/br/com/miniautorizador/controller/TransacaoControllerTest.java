@@ -41,7 +41,7 @@ class TransacaoControllerTest {
     }
 
     @Test
-    @WithMockUser(username = "dk", password = "1234", roles = "USER")
+    @WithMockUser(username = "dk", password = "1234")
     void testTransacao_Sucesso() {
         ResponseEntity<String> response = transacaoController.transacao(transacao);
 
@@ -50,7 +50,7 @@ class TransacaoControllerTest {
     }
 
     @Test
-    @WithMockUser(username = "dk", password = "1234", roles = "USER")
+    @WithMockUser(username = "dk", password = "1234")
     void testTransacao_CartaoInexistente() {
         doThrow(new CartaoInexistenteException("Cartão Inexistente"))
                 .when(transacaoService).criaTransacao(transacao);
@@ -63,7 +63,7 @@ class TransacaoControllerTest {
     }
 
     @Test
-    @WithMockUser(username = "dk", password = "1234", roles = "USER")
+    @WithMockUser(username = "dk", password = "1234")
     void testTransacao_SenhaInvalida() {
         doThrow(new SenhaInvalidaException("Senha Inválida"))
                 .when(transacaoService).criaTransacao(transacao);
@@ -76,7 +76,7 @@ class TransacaoControllerTest {
     }
 
     @Test
-    @WithMockUser(username = "dk", password = "1234", roles = "USER")
+    @WithMockUser(username = "dk", password = "1234")
     void testTransacao_SaldoInsuficiente() {
         doThrow(new SaldoInsuficienteException("Saldo Insuficiente"))
                 .when(transacaoService).criaTransacao(transacao);
