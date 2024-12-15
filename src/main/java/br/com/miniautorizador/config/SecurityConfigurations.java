@@ -46,4 +46,5 @@ public class SecurityConfigurations {
     public PasswordEncoder passwordEncoder(){
         return NoOpPasswordEncoder.getInstance();
     }
+
 }

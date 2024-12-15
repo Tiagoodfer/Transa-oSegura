@@ -12,13 +12,18 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    public User createUser(UserDTO userDTO) {
-
+    public UserDTO createUser(UserDTO userDTO) {
         User user = new User();
         user.setLogin(userDTO.getLogin());
         user.setPassword(userDTO.getPassword());
 
-        return userRepository.save(user);
+        User savedUser = userRepository.save(user);
+
+        UserDTO responseDTO = new UserDTO();
+        responseDTO.setLogin(savedUser.getLogin());
+        responseDTO.setPassword(savedUser.getPassword());
+
+        return responseDTO;
     }
 
     public boolean deleteUser(Long id) {
