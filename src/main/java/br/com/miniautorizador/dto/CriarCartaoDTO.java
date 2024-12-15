@@ -14,6 +14,4 @@ public class CriarCartaoDTO {
     private String numeroCartao;
     private String senha;
 
-    public CriarCartaoDTO(String number, String senha123) {
-    }
 }

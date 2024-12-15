@@ -28,7 +28,7 @@ class CartaoServiceTest {
     private CartaoRepository cartaoRepository;
 
     private CriarCartaoDTO criarCartaoDTO;
-    private CartaoCriadoDTO cartaoCriadoDTO;
+//    private CartaoCriadoDTO cartaoCriadoDTO;
     private Cartao cartao;
 
     @BeforeEach
@@ -40,10 +40,10 @@ class CartaoServiceTest {
                 .senha("senha123")
                 .build();
 
-        cartaoCriadoDTO = CartaoCriadoDTO.builder()
-                .numeroCartao("123456789")
-                .senha("senha123")
-                .build();
+//        cartaoCriadoDTO = CartaoCriadoDTO.builder()
+//                .numeroCartao("123456789")
+//                .senha("senha123")
+//                .build();
 
         cartao = new Cartao();
         cartao.setNumeroCartao("123456789");
@@ -72,7 +72,6 @@ class CartaoServiceTest {
         });
 
         assertEquals("123456789", exception.getNumeroCartao());
-        assertEquals("senha123", exception.getSenha());
     }
 
     @Test

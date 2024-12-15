@@ -18,7 +18,7 @@ public class CartaoController {
     private final CartaoService cartaoService;
 
     @PostMapping
-    public ResponseEntity<?> cadastrarCartao(@RequestBody CriarCartaoDTO criarCartaoDTO) {
+    public ResponseEntity<CartaoCriadoDTO> cadastrarCartao(@RequestBody CriarCartaoDTO criarCartaoDTO) {
         CartaoCriadoDTO cartaoCriadoDTO = cartaoService.criarCartao(criarCartaoDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(cartaoCriadoDTO);
     }

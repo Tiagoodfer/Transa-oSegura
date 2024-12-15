@@ -50,7 +50,7 @@ class CartaoControllerTest {
     }
 
     @Test
-    @WithMockUser(username = "dk", password = "1234", roles = "USER")
+    @WithMockUser(username = "dk", password = "1234")
     void testCadastrarCartao() {
 
         when(cartaoService.criarCartao(any(CriarCartaoDTO.class))).thenReturn(cartaoCriadoDTO);
@@ -62,9 +62,9 @@ class CartaoControllerTest {
     }
 
     @Test
-    @WithMockUser(username = "dk", password = "1234", roles = "USER")
+    @WithMockUser(username = "dk", password = "1234")
     void testCadastrarCartao_CartaoExistente() {
-        CriarCartaoDTO criarCartaoDTO = new CriarCartaoDTO("123456789", "senha123");
+        CriarCartaoDTO criarCartaoDTO = new CriarCartaoDTO(new BigDecimal("500"), "123456789", "senha123");
 
         doThrow(new CartaoExistenteException("123456789", "senha123"))
                 .when(cartaoService).criarCartao(any(CriarCartaoDTO.class));
@@ -78,7 +78,7 @@ class CartaoControllerTest {
     }
 
     @Test
-    @WithMockUser(username = "dk", password = "1234", roles = "USER")
+    @WithMockUser(username = "dk", password = "1234")
     void testConsultarSaldo() {
         String numeroCartao = "123456789";
         BigDecimal saldo = BigDecimal.valueOf(500);
@@ -91,18 +91,18 @@ class CartaoControllerTest {
         assertEquals(saldo, response.getBody());
     }
 
-//    @Test
-//    @WithMockUser(username = "dk", password = "1234", roles = "USER")
-//    void testConsultarSaldo_CartaoInexistente() {
-//        String numeroCartao = "123456789";
-//
-//        when(cartaoService.consultarSaldo(numeroCartao))
-//                .thenThrow(new CartaoInexistenteException());
-//
-//        CartaoInexistenteException exception = assertThrows(CartaoInexistenteException.class, () -> {
-//            cartaoController.consultarSaldo(numeroCartao);
-//        }
-//        );
-//    }
+    @Test
+    @WithMockUser(username = "dk", password = "1234")
+    void testConsultarSaldo_CartaoInexistente() {
+        String numeroCartao = "123456789";
+
+        when(cartaoService.consultarSaldo(numeroCartao))
+                .thenThrow(new CartaoInexistenteException());
+
+        CartaoInexistenteException exception = assertThrows(CartaoInexistenteException.class, () -> {
+            cartaoController.consultarSaldo(numeroCartao);
+        }
+        );
+    }
 
 }
