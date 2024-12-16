@@ -6,7 +6,7 @@ import br.com.miniautorizador.security.TokenService;
 import br.com.miniautorizador.domain.User;
 import br.com.miniautorizador.dto.UserDTO;
 import br.com.miniautorizador.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -18,17 +18,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("login")
+@RequiredArgsConstructor
 public class AuthenticationController {
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
-    @Autowired
-    private UserRepository repository;
-    @Autowired
-    private TokenService tokenService;
+    private final AuthenticationManager authenticationManager;
+
+    private final UserRepository repository;
+
+    private final TokenService tokenService;
 
     @PostMapping
     public ResponseEntity login(@RequestBody @Validated UserDTO data){
+
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.getLogin(), data.getPassword());
         var auth = this.authenticationManager.authenticate(usernamePassword);
 
